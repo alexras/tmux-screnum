@@ -29,8 +29,6 @@ def get_windows():
 
     windows = {}
 
-    print window_list
-
     for line in window_list.split('\n'):
         line = line.strip()
 
