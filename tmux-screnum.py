@@ -25,7 +25,7 @@ def checked_call(cmd, expected_status=0):
 
 def get_windows():
     window_list = checked_call("tmux list-windows")
-    window_extractor_regex = re.compile('^(\d+): (.*?) \[\d+x\d+\]$')
+    window_extractor_regex = re.compile('^(\d+): (.*?) \[\d+x\d+\]')
 
     windows = {}
 
