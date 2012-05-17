@@ -43,6 +43,9 @@ def screnum():
     print "Reading window list ..."
     windows = get_windows()
 
+    # Remember original window number
+    my_window_number = int(checked_call('tmux display-message -p "#I"'))
+
     def swap(i, j):
         """
         Moves the given window number in the given session from window number i
@@ -93,6 +96,13 @@ def screnum():
             continue
         else:
             swap(smallest_window_number, i)
+
+            # If the window you moved is the one you're currently in, note it
+            if smallest_window_number == my_window_number:
+                my_window_number = i
+
+    # Move current window back to original window
+    checked_call("tmux select-window -t :%d" % (my_window_number))
 
 if __name__ == "__main__":
     screnum()
